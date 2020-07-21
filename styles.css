@@ -1,0 +1,10 @@
+.logo {
+  width: 300px;
+}
+.container {
+  display: flex;
+}
+
+.grid img {
+      width: 100px;  
+}
