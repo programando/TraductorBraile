@@ -29,28 +29,38 @@ const BraileArray = [
 
 
 grid = document.querySelector('.grid');
-
 document.getElementById('texto').addEventListener('keyup', MostrarTexto);
+ 
 
 function MostrarTexto( ) {
   let TextoInicial = document.getElementById('texto').value;
   imgs = document.querySelector('.grid');
   imgs.innerHTML = '';
-  showLetters(TextoInicial)
+  SepararLetras(TextoInicial)
 }
-
-function showLetters(Texto) {
+  
+function SepararLetras(Texto) {
   let ArrayLetras = Texto.split("");
   for (i = 0; i < ArrayLetras.length; i++) {
     let img = BraileArray.find(element => element.name == ArrayLetras[i]);
     if (img != undefined) {
-      var newImage = document.createElement("img");
-      newImage.setAttribute('src', img.img);
-      grid.appendChild(newImage);
+      AgregarNodos(img.img, img.name);
     }
   }
 
-  
+  function AgregarNodos(Imagen, Texto) {
+    var newDiv           = document.createElement('div');
+    var newImage         = document.createElement("img");
+    var newP             = document.createElement("p");
+        newDiv.className = 'contenedor-imagen';
 
- /* document.getElementById("preview").innerHTML="<img src='"+img.img+"'>"; */
+    newImage.setAttribute('src', Imagen);
+    newP.innerHTML=Texto;
+
+    grid.appendChild(newDiv);
+    newDiv.appendChild(newImage);
+    newDiv.appendChild(newP);
+
+  }
+  
 }
